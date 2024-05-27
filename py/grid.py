@@ -21,6 +21,7 @@ class Color(Enum):
 def activateLine(line: int, cols: list[Color]):
     """
     Activeaza pixelii de pe linia `line` si coloanele din `cols`
+
     :param x: line in [0, 5)
     :param cols: lista cu 8 elemente cu starea fiecarei coloane de la stanga la dreapta
     """
@@ -35,6 +36,15 @@ def activateLine(line: int, cols: list[Color]):
     _shift_reg2.writeOut(int(value / 256))
 
     GPIO.output(LINES_PINS[line], GPIO.HIGH)
+
+def convertGridToData(grid: str) -> list[list[Color]]:
+    """
+    Transforma un string in date de afisat pe display.
+
+    :param grid: string format din '.' si 'x' si cu linii separate prin '\n'
+    :return: grid cu date de afisat pe display
+    """
+    return [[Color.OFF if c == '.' else Color.GREEN for c in line.strip()] for line in grid]
 
 
 
