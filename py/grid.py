@@ -15,7 +15,7 @@ class Color(Enum):
     OFF = "00"
     RED = "01"
     GREEN = "10"
-    BOTH = "11"
+    ALL = "11"
 
 
 def activateLine(line: int, cols: list[Color]):
@@ -37,14 +37,14 @@ def activateLine(line: int, cols: list[Color]):
 
     GPIO.output(LINES_PINS[line], GPIO.HIGH)
 
-def convertGridToData(grid: str) -> list[list[Color]]:
+def convertDataToGrid(grid: list[str], color: Color) -> list[list[Color]]:
     """
     Transforma un string in date de afisat pe display.
 
     :param grid: string format din '.' si 'x' si cu linii separate prin '\n'
     :return: grid cu date de afisat pe display
     """
-    return [[Color.OFF if c == '.' else Color.GREEN for c in line.strip()] for line in grid]
+    return [[Color.OFF if c == '.' else color for c in line] for line in grid]
 
 
 
