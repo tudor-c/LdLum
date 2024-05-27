@@ -1,7 +1,6 @@
 #!/bin/python3
 
 import RPi.GPIO as GPIO
-# import time
 
 class SN74HC595:
     def __init__(self, latch_clk, shift_clk, data_bit):
@@ -22,12 +21,10 @@ class SN74HC595:
 
     def _shiftRegister(self):
         GPIO.output(self._shift_clk, 1)
-        # time.sleep(0.0001)
         GPIO.output(self._shift_clk, 0)
 
     def _updateLatch(self):
         GPIO.output(self._latch_clk, 1)
-        # time.sleep(0.0001)
         GPIO.output(self._latch_clk, 0)
 
     def writeOut(self, value):
