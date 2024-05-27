@@ -3,6 +3,8 @@ import time
 import copy
 from dataclasses import dataclass
 from grid import activateLine, Color
+from input import Buttons, isPressed
+
 
 @dataclass
 class Point:
@@ -39,8 +41,12 @@ class Game:
         ]
 
     def start(self):
+        self._print_level()
         while True:
-            self._print_level()
+            for pin in Buttons:
+                if isPressed(pin):
+                    print(f"pressed {pin}")
+
 
 
 
