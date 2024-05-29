@@ -57,7 +57,7 @@ class Game:
 
     def _init(self):
         level_data = [line.strip() for line in random.choice(Game._LEVELS).splitlines()]
-        self.level = convertDataToGrid(level_data, Color.GREEN)
+        self.level = convertDataToGrid(level_data, Color.ALL)
         self.player_pos = Point(0, 0)
         self.enemy_pos = Point(Game._WIDTH - 1, Game._HEIGHT - 1)
 
@@ -71,7 +71,7 @@ class Game:
         display = copy.deepcopy(grid)
 
         if print_players:
-            display[self.player_pos.y][self.player_pos.x] = Color.ALL
+            display[self.player_pos.y][self.player_pos.x] = Color.GREEN
             if int(time.time() * 10) % 7 != 0:
                 display[self.enemy_pos.y][self.enemy_pos.x] = Color.RED
 
